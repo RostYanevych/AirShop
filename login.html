@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>AIRSHOP Training</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="css/airshop.css"/>
+</head>
+<body>
+<header>
+    <div class="logo"></div>
+    <div class="title">Start</div>
+</header>
+
+<div class="container pad2">
+    <p>Input your crew code then press Enter.</p>
+    <input id="inp" class="w100" type="text" value=""/>
+
+    <table class="w100 keys-table cols-6">
+        <tr>
+            <td><a class="input-key" href="#">A</a></td>
+            <td><a class="input-key" href="#">B</a></td>
+            <td><a class="input-key" href="#">C</a></td>
+            <td><a class="input-key" href="#">D</a></td>
+            <td><a class="input-key" href="#">E</a></td>
+            <td class="img-cell"><a id="back-key" href="#"><img src="./images/backspace.png"></a></td>
+        </tr>
+        <tr>
+            <td><a class="input-key" href="#">F</a></td>
+            <td><a class="input-key" href="#">G</a></td>
+            <td><a class="input-key" href="#">H</a></td>
+            <td><a class="input-key" href="#">I</a></td>
+            <td><a class="input-key" href="#">J</a></td>
+            <td rowspan="5">
+                <a id="enter-key" class="enter-key" href="#">E<br>N<br>T<br>E<br>R</a>
+            </td>
+        </tr>
+        <tr>
+            <td><a class="input-key" href="#">K</a></td>
+            <td><a class="input-key" href="#">L</a></td>
+            <td><a class="input-key" href="#">M</a></td>
+            <td><a class="input-key" href="#">N</a></td>
+            <td><a class="input-key" href="#">O</a></td>
+        </tr>
+        <tr>
+            <td><a class="input-key" href="#">P</a></td>
+            <td><a class="input-key" href="#">Q</a></td>
+            <td><a class="input-key" href="#">R</a></td>
+            <td><a class="input-key" href="#">S</a></td>
+            <td><a class="input-key" href="#">T</a></td>
+        </tr>
+        <tr>
+            <td><a class="input-key" href="#">U</a></td>
+            <td><a class="input-key" href="#">V</a></td>
+            <td><a class="input-key" href="#">W</a></td>
+            <td><a class="input-key" href="#">X</a></td>
+            <td><a class="input-key" href="#">Y</a></td>
+        </tr>
+        <tr>
+            <td><a class="input-key" href="#">Z</a></td>
+            <td><a class="input-key" href="#">1</a></td>
+            <td><a class="input-key" href="#">2</a></td>
+            <td><a class="input-key" href="#">3</a></td>
+            <td><a class="input-key" href="#">4</a></td>
+        </tr>
+        <tr>
+            <td><a class="input-key" href="#">5</a></td>
+            <td><a class="input-key" href="#">6</a></td>
+            <td><a class="input-key" href="#">7</a></td>
+            <td><a class="input-key" href="#">8</a></td>
+            <td><a class="input-key" href="#">9</a></td>
+            <td><a class="input-key" href="#">0</a></td>
+        </tr>
+    </table>
+</div>
+
+<footer>
+    <a class="btn pink w30" href="javascript:void();"></a>
+    <a class="btn green w40" href="javascript:showMenu();">Menu</a>
+    <a class="btn pink w30" href="javascript:clearScreen();">Clear Screen</a>
+</footer>
+
+<script src="js/jquery.js"></script>
+<script src="js/airshop.js"></script>
+<script>
+    $(document).on("ready", function () { //Document ready -- set click handler
+        $('#inp').val('');
+        $('.input-key').on('click', function(e){
+            var inp = $('#inp');
+            inp.val( inp.val() + $(e.target).text() );
+        });
+
+        $('#back-key').on('click', function(){
+            var inp = $('#inp');
+            inp.val( inp.val().slice(0,-1) );
+        });
+
+        $('#enter-key').on('click', function(){
+            if($('#inp').val() == 'AAA')
+                location.href = 'startup_tasks.html';
+        });
+    });
+</script>
+</body>
+</html>

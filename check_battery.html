@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>AIRSHOP Training</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="css/airshop.css"/>
+</head>
+<body>
+<header>
+    <div class="logo"></div>
+    <div class="title">Battery Check</div>
+</header>
+
+<div class="container pad10">
+    <h1 class="text-center pad10">Battery Status</h1>
+
+    <div id="battery-status" class="battery-status">
+        <div id="battery-tested" style="display:none;">
+            <h1 class="text-center" style="height: 195px; line-height: 195px;">Good</h1>
+            <h1 class="text-center">Battery 90%</h1>
+            <table class="w100 battery-meter">
+                <tr>
+                    <td class="battery-cell-1"></td>
+                    <td class="battery-cell-2"></td>
+                    <td class="battery-cell-3"></td>
+                    <td class="battery-cell-4"></td>
+                    <td class="battery-cell-5"></td>
+                    <td class="battery-cell-6"></td>
+                    <td class="battery-cell-7"></td>
+                    <td class="battery-cell-8"></td>
+                    <td class="battery-cell-9"></td>
+                    <td class="battery-cell-10"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <a id="test-btn" class="btn w100 block" href="#">Test</a>
+</div>
+
+<footer>
+    <a class="back-btn btn pink w30" href="javascript:history.back();"><span>Back</span></a>
+    <a class="btn green w40" href="javascript:showMenu();">Menu</a>
+    <a class="btn pink w30" href="javascript:clearScreen();">Clear Screen</a>
+</footer>
+
+<div id="battery-test-progress" style="display: none;" class="pad20">
+    <h1 class="text-center" style="height: 490px; line-height: 490px;">Analyzing Battery...</h1>
+    <div class="text-center" id="battery-analyzis-indicator">
+        <span class="progress"></span>
+        <span class="value"></span>
+    </div>
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/airshop.js"></script>
+<script>
+    $(document).on("ready", function () {
+        var progressValue = 0;
+        var progressUpdater;
+
+        var updateProgress = function() {
+            testProgress = testProgress + 2;
+            if(testProgress == 100) {
+                clearInterval(progressUpdater);
+                $('#battery-test-progress').hide();
+                $('#battery-tested').show();
+            } else {
+                var el = $('#battery-analyzis-indicator');
+                el.find('.progress').css('width', testProgress+'%');
+                el.find('.value').text(testProgress+'%');
+            }
+        }
+
+        $('#test-btn').on('click', function(e){
+            $('#battery-test-progress').show();
+            testProgress = 0;
+            progressUpdater = setInterval( updateProgress, 300 );
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>AIRSHOP Training</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="css/airshop.css"/>
+</head>
+
+<body>
+<header>
+    <div class="logo"></div>
+    <div class="title">Crew List</div>
+</header>
+
+<div class="container pad5">
+    <table class="w100 crew-list" id="crew-list">
+        <thead>
+            <tr><th>Name</th><th style="width: 120px;">Access</th></tr>
+        </thead>
+        <tbody>
+            <tr class="data-row"><td>AAA AAA</td><td>Full</td></tr>
+            <tr class="data-row"><td>BBB BBB</td><td>Medium</td></tr>
+        </tbody>
+    </table>
+
+    <div class="above-footer">
+        <table class="w100 cols-3 buttons-table">
+            <tr>
+                <td><a class="btn w100 block" href="#">Add</a></td>
+                <td><a id="remove-btn" class="btn w100 block" href="#">Remove</a></td>
+                <td><a class="btn w100 block" href="#">Create</a></td>
+            </tr>
+            <tr>
+                <td><a id="access-btn" class="btn w100 block" href="#">Access</a></td>
+                <td><a class="btn w100 block" href="#">Print</a></td>
+                <td><a id="done" class="btn w100 block" href="startup_tasks.html">Done</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<footer>
+    <a class="btn pink w30" href="#"></a>
+    <a class="btn green w40" href="javascript:showMenu();">Menu</a>
+    <a class="btn pink w30" href="javascript:clearScreen();">Clear Screen</a>
+</footer>
+
+<div class="overlay" id="access-selector" style="display: none;">
+    <header>
+        <div class="logo"></div>
+        <div class="title">Select Access Level</div>
+    </header>
+
+    <div class="container pad10">
+        <a href="#" class="access-btn btn w100 block">Full</a>
+        <a href="#" class="access-btn btn w100 block">Medium</a>
+        <a href="#" class="access-btn btn w100 block">Base</a>
+    </div>
+
+    <footer>
+        <a class="btn pink w30" href="javascript:hideOverlay();">Back</a>
+        <a class="btn green w40" href="javascript:showMenu();">Menu</a>
+        <a class="btn pink w30" href="javascript:clearScreen();">Clear Screen</a>
+    </footer>
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/airshop.js"></script>
+<script>
+    $(document).on("ready", function () {
+        $(document).on('click', '.data-row', function(e){
+            var el = $(e.currentTarget);
+            el.siblings('.selected').removeClass('selected');
+            el.addClass('selected');
+        });
+    });
+
+    $('#remove-btn').on('click', function(e){
+        $('#crew-list').find('.selected').remove();
+    });
+
+    $('#access-btn').on('click', function(e){
+        if( $('#crew-list').find('.selected').length == 0 )
+            return;
+        $('#access-selector').show();
+    });
+
+    $('.access-btn').on('click', function(e){
+        $('#crew-list').find('.selected').find('td:last-child').text( $(e.target).text() );
+        hideOverlay();
+    });
+
+    $('#done').on('click', function (e) {
+        sessionStorage.user_list_done = 1;
+    });
+
+</script>
+</body>
+</html>

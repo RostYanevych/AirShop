@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>AIRSHOP Training</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="css/airshop.css"/>
+</head>
+
+<body>
+    <header>
+        <div class="logo"></div>
+        <div class="title">Start Up Tasks</div>
+    </header>
+
+    <div class="container pad2">
+        <table class="w100 tasks-list">
+            <tr><td class="task-status"><span data-task="user_list_done" class="incomplete"></span></td><td><a class="btn w100" href="user_list.html">User List</a></td></tr>
+            <tr><td class="task-status"><span data-task="check_legs_done" class="incomplete"></span></td><td><a class="btn w100" href="#">Check Legs</a></td></tr>
+            <tr><td class="task-status"><span data-task="crew_messages_done" class="incomplete"></span></td><td><a class="btn w100" href="crew_messages.html">Crew Messages</a></td></tr>
+            <tr><td class="task-status"><span data-task="seal_check_done" class="incomplete"></span></td><td><a class="btn w100" href="#">Seal Check</a></td></tr>
+            <tr><td class="task-status"><span data-task="stock_check_done" class="incomplete"></span></td><td><a class="btn w100" href="#">Opening Stock Check</a></td></tr>
+            <tr><td class="task-status"><span data-task="stock_report_done" class="incomplete"></span></td><td><a style="line-height: 30px;" class="btn w100" href="#">Opening Stock Check Report</a></td></tr>
+        </table>
+    </div>
+
+    <footer>
+        <a class="btn pink w30" href="#"></a>
+        <a class="btn green w40" href="javascript:showMenu();">Menu</a>
+        <a class="btn pink w30" href="javascript:clearScreen();">Clear Screen</a>
+    </footer>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/airshop.js"></script>
+    <script>
+        $(document).on("ready", function () { //Document ready -- set click handler
+            $('.task-status > span').each(
+                function(i, el) {
+                    var $el = $(el);
+                    if( sessionStorage.getItem( $el.data('task') ) )
+                        $el.removeClass().addClass('completed');
+                }
+            );
+        });
+    </script>
+</body>
+</html>
