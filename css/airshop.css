@@ -301,11 +301,11 @@ td.img-cell img{
 .suspend-icon{background-position: -70px 0;}
 .leg-details-icon{background-position: -140px 0;}
 
-.crew-login-icon{background-position: 0px -70px;}
+.crew-login-icon{background-position: 0 -70px;}
 
 .calc-icon{background-position: -70px -210px;}
 .about-icon{background-position: -70px -280px;}
-.nuke-icon{background-position: 0px -350px;}
+.nuke-icon{background-position: 0 -350px;}
 
 #menuOverlay .container {
     padding-top: 20px;
@@ -424,6 +424,17 @@ tr.selected {
     font-size: 24px;
     height: 450px;
     margin-bottom: 6px;
+    overflow-y: auto;
+    padding: 5px;
+}
+
+.log-messages {
+    border: 2px solid #c0c0c0;
+    font-size: 14px;
+    line-height: 14px;
+    height: 380px;
+    margin-bottom: 6px;
+    margin-top: 3px;
     overflow-y: auto;
     padding: 5px;
 }

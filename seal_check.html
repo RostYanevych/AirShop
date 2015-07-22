@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>AIRSHOP Training</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="css/airshop.css"/>
+</head>
+
+<body>
+<header>
+    <div class="logo"></div>
+    <div class="title">Seal List</div>
+</header>
+
+<div class="container pad5">
+    <pre id="console" class="log-messages"></pre>
+    <table class="cols-3 w100 buttons-table">
+        <tr>
+            <td><a class="btn block" href="javascript:appInfo();">AppInfo</a></td>
+            <td><a class="btn block" href="javascript:imagerScan();">Scan</a></td>
+            <td><a class="btn block" href="javascript:clearLog();">Clr Log</a></td>
+        </tr>
+    </table>
+</div>
+
+<object type="youtransactor/imager-plugin" display="none" height="0" width="0">Plugin FAILED to load</object>
+
+<footer>
+    <a class="btn pink w30" href="#"></a>
+    <a class="btn green w40" href="javascript:showMenu();">Menu</a>
+    <a class="btn pink w30" href="javascript:clearScreen();">Clear Screen</a>
+</footer>
+
+<script src="js/jquery.js"></script>
+<script src="js/airshop.js"></script>
+<script>
+    function appInfo(){
+        var res;
+        var logContainer = $('#console').append('appInfo:\n');;
+
+        try {
+            res = YTimager.getApiInfo();
+        } catch(err) {
+            console.log(err);
+            logContainer.append('  ERROR:\n' + err + '\n');
+            return;
+        }
+
+        logContainer.append( JSON.stringify( res, null, 2 ));
+    }
+
+    function clearLog() {
+        $('#console').html('');
+    }
+
+    function setError(err) {
+        $('#console').append('  ERROR:\n' + err + '\n');
+    }
+
+    function setResult(obj) {
+        $('#console').append('  Result: ' + obj + '\n');
+    }
+
+    function imagerOpen() {
+        var res;
+        var logContainer = $('#console').append('YTimager.open: ');
+        try {
+            res = YTimager.open();
+        } catch(err) {
+            console.log(err);
+            logContainer.append('\n  ERROR:\n' + err + '\n');
+            return;
+        }
+        logContainer.append(res);
+        return res;
+    }
+
+    function imagerScan(){
+        var logContainer = $('#console').append('YTimager.scan:');
+
+        try {
+            var imager_status = YTimager.open();
+            if (imager_status == 0) {
+                YTimager.signalScanCompleted.connect( imagerFinished );
+                var res = YTimager.scan(5000);
+                logContainer.append('\n  res:\n')
+                            .append( JSON.stringify( result, null, 2 ));
+            }
+            else {
+                logContainer.append("\n  Problem with imager. Error code: "+imager_status);
+            }
+        } catch(err) {
+            logContainer.append('\n  ERROR:\n' + err + '\n');
+        }
+    }
+
+    function imagerFinished( result ) {
+        var logContainer;
+        try {
+            YTimager.close();
+            logContainer.append('\n  imagerFinished callback result:\n')
+                        .append( JSON.stringify( result, null, 2 ));
+        }catch(err){
+            logContainer.append('\n  ERROR:\n' + err + '\n');
+        }
+    }
+
+
+    $(document).on("ready", function () { //Document ready -- set click handler
+        $('.task-status > span').each(
+                function(i, el) {
+                    var $el = $(el);
+                    if( sessionStorage.getItem( $el.data('task') ) )
+                        $el.removeClass().addClass('completed');
+                }
+        );
+    });
+</script>
+</body>
+</html>
