@@ -17,9 +17,9 @@ function showMenu() {
          <a class="menu-item text-center"><span class="menu-icon nuke-icon"></span><div class="menu-icon-text">Clear Down</div></a>\
         </div>\
         <footer> \
-        <a class="btn pink w30" href="javascript:hideMenu();">Back</a> \
-        <a class="btn green w40" href="javascript:void();"></a> \
-        <a class="btn pink w30" href="javascript:clearScreen();">Clear Screen</a> \
+        <button class="btn pink w30" onclick="hideMenu();">Back</button> \
+        <button class="btn green w40"></button> \
+        <button class="btn pink w30" onclick="clearScreen();">Clear Screen</button> \
     </footer> \
     </div>';
     $('body').append(markup);
@@ -32,3 +32,12 @@ function hideMenu() {
 function hideOverlay() {
     $('.overlay:visible').hide();
 }
+
+//$(document).on('tap click', 'button[href]', function(e) {
+$(document).on('click', 'button[href]', function(e) {
+    //e.stopPropagation();
+    console.log('click on button with href', e);
+    location.href = $(e.currentTarget).attr('href');
+});
+
+document.body.addEventListener('touchstart', function() {}, false);

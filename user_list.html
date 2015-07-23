@@ -69,6 +69,7 @@
 </div>
 
 <script src="js/jquery.js"></script>
+<script src="js/jquery.mobile.custom.min.js"></script>
 <script src="js/airshop.js"></script>
 <script>
     $(document).on("ready", function () {
@@ -79,11 +80,11 @@
         });
     });
 
-    $('#remove-btn').on('click', function(e){
+    $('#remove-btn').on('click', function(){
         $('#crew-list').find('.selected').remove();
     });
 
-    $('#access-btn').on('click', function(e){
+    $('#access-btn').on('click', function(){
         if( $('#crew-list').find('.selected').length == 0 )
             return;
         $('#access-selector').show();
@@ -94,7 +95,7 @@
         hideOverlay();
     });
 
-    $('#done').on('click', function (e) {
+    $('#done').on('click', function () {
         sessionStorage.user_list_done = 1;
     });
 

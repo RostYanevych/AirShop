@@ -43,6 +43,8 @@
     <a id="test-btn" class="btn w100 block" href="#">Test</a>
 </div>
 
+<object type="youtransactor/sys-plugin" width="0" height="0" style="display: none; width: 0; height: 0;">System Plugin FAILED to load !</object>
+
 <footer>
     <a class="back-btn btn pink w30" href="javascript:history.back();"><span>Back</span></a>
     <a class="btn green w40" href="javascript:showMenu();">Menu</a>
@@ -58,11 +60,14 @@
 </div>
 
 <script src="js/jquery.js"></script>
+<script src="js/jquery.mobile.custom.min.js"></script>
 <script src="js/airshop.js"></script>
 <script>
     $(document).on("ready", function () {
         var progressValue = 0;
         var progressUpdater;
+
+//        YTsystem.batteryCharge -- This property is the state of battery (int).
 
         var updateProgress = function() {
             testProgress = testProgress + 2;
@@ -75,9 +80,9 @@
                 el.find('.progress').css('width', testProgress+'%');
                 el.find('.value').text(testProgress+'%');
             }
-        }
+        };
 
-        $('#test-btn').on('click', function(e){
+        $('#test-btn').on('click', function(){
             $('#battery-test-progress').show();
             testProgress = 0;
             progressUpdater = setInterval( updateProgress, 300 );

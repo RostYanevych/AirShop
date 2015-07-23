@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<script>
+    function scan(){
+        try {
+            setError(null);
+            setResult(null);
+            var imager_status = YTimager.open();
+            if (imager_status == 0) {
+                YTimager.signalScanCompleted.connect(finished);
+                YTimager.scan(5000);
+            }
+            else {
+                setError("Problem with imager");
+            }
+        }catch(e){
+            alert(e);
+        }
+    }
+    function finished(result){
+        try {
+            YTimager.close();
+            setError(result.error);
+            if (result.error == "OK")
+                setResult("value: " + result.value);
+        }catch(e){
+            alert(e);
+        }
+    }
+    function setError(obj)
+    {
+        var MyElement = document.getElementById("MyTextBox");
+        MyElement.value = obj;
+    }
+    function setResult(obj)
+    {
+        var MyElement = document.getElementById("MyTextBox2");
+        MyElement.value = obj;
+    }
+</script>
+<body onload="">
+<button onclick="'scan()" size="20">Scan</button>
+<object type="youtransactor/imager-plugin" display="none" height=0 width=0>Plugin
+    FAILED to load</object>
+<br />error: <input type="text" size="20" id="MyTextBox" value=""/>
+<br />result: <input type="text" size="20" id="MyTextBox2" value=""/>
+<p>This is a test</p>
+</body>
+</html>

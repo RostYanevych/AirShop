@@ -20,22 +20,25 @@
         <h1 class="text-center pad10">Please press 1 then 2 then 3 to activate system</h1>
 
         <div class="w100 buttons-container buttons-container3">
-            <a class="activate btn btn-high" href="#">1</a>
-            <a class="activate btn btn-high" href="#">2</a>
-            <a class="activate btn btn-high" href="#">3</a>
+            <button class="activate btn btn-high">1</button>
+            <button class="activate btn btn-high">2</button>
+            <button class="activate btn btn-high">3</button>
         </div>
 
         <h1 class="text-center red pad10">Not Closed Down</h1>
-        <a class="btn btn-high w100 block" href="check_battery.html">Check Battery</a>
+        <button class="btn btn-high w100 block" href="check_battery.html">Check Battery</button>
     </div>
 
+    <object type="youtransactor/sys-plugin" width="0" height="0" style="display: none; width: 0; height: 0;">System Plugin FAILED to load !</object>
+
     <footer>
-        <a class="back-btn btn pink w30" href="#"><span>Back</span></a>
-        <a class="btn green w40" href="javascript:showMenu();">Menu</a>
-        <a class="btn pink w30" href="javascript:clearScreen();">Clear Screen</a>
+        <button class="btn pink w30" onclick="YTsystem.close();">Back</button>
+        <button class="btn green w40" onclick="showMenu();">Menu</button>
+        <button class="btn pink w30" onclick="clearScreen();">Clear Screen</button>
     </footer>
 
     <script src="js/jquery.js"></script>
+    <script src="js/jquery.mobile.custom.min.js"></script>
     <script src="js/airshop.js"></script>
     <script>
         $(document).on("ready", function () {

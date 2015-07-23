@@ -20,9 +20,9 @@
     <pre id="console" class="log-messages"></pre>
     <table class="cols-3 w100 buttons-table">
         <tr>
-            <td><a class="btn block" href="javascript:appInfo();">AppInfo</a></td>
-            <td><a class="btn block" href="javascript:imagerScan();">Scan</a></td>
-            <td><a class="btn block" href="javascript:clearLog();">Clr Log</a></td>
+            <td><button class="btn w100" onclick="appInfo();">AppInfo</button></td>
+            <td><button class="btn w100" onclick="imagerScan();">Scan</button></td>
+            <td><button class="btn w100" onclick="clearLog();">Clr Log</button></td>
         </tr>
     </table>
 </div>
@@ -30,17 +30,18 @@
 <object type="youtransactor/imager-plugin" display="none" height="0" width="0">Plugin FAILED to load</object>
 
 <footer>
-    <a class="btn pink w30" href="#"></a>
-    <a class="btn green w40" href="javascript:showMenu();">Menu</a>
-    <a class="btn pink w30" href="javascript:clearScreen();">Clear Screen</a>
+    <button class="btn pink w30">&nbsp;</button>
+    <button class="btn green w40" onclick="showMenu();">Menu</button>
+    <button class="btn pink w30" onclick="clearScreen();">Clear Screen</button>
 </footer>
 
 <script src="js/jquery.js"></script>
+<script src="js/jquery.mobile.custom.min.js"></script>
 <script src="js/airshop.js"></script>
 <script>
     function appInfo(){
         var res;
-        var logContainer = $('#console').append('appInfo:\n');;
+        var logContainer = $('#console').append('appInfo:\n');
 
         try {
             res = YTimager.getApiInfo();
@@ -87,11 +88,11 @@
             if (imager_status == 0) {
                 YTimager.signalScanCompleted.connect( imagerFinished );
                 var res = YTimager.scan(5000);
-                logContainer.append('\n  res:\n')
-                            .append( JSON.stringify( result, null, 2 ));
+//                logContainer.append('\n  res:\n')
+//                            .append( JSON.stringify( res, null, 2 ));
             }
             else {
-                logContainer.append("\n  Problem with imager. Error code: "+imager_status);
+                logContainer.append("\n  Problem with imager. Error code: " + imager_status);
             }
         } catch(err) {
             logContainer.append('\n  ERROR:\n' + err + '\n');
@@ -99,16 +100,15 @@
     }
 
     function imagerFinished( result ) {
-        var logContainer;
+        var logContainer = $('#console');
         try {
             YTimager.close();
             logContainer.append('\n  imagerFinished callback result:\n')
                         .append( JSON.stringify( result, null, 2 ));
-        }catch(err){
+        } catch(err) {
             logContainer.append('\n  ERROR:\n' + err + '\n');
         }
     }
-
 
     $(document).on("ready", function () { //Document ready -- set click handler
         $('.task-status > span').each(

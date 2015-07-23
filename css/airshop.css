@@ -82,15 +82,16 @@ header > div {
 .w100 {width: 100%;}
 
 .btn {
-    text-align: center;
-    vertical-align: middle;
-    box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.5) inset, -2px -2px 2px 0 rgba(55, 55, 55, 0.5) inset;
+    /*text-align: center;*/
+    /*vertical-align: middle;*/
+    /*box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.5) inset, -2px -2px 2px 0 rgba(55, 55, 55, 0.5) inset;*/
     background-color: #c0c0c0;
     padding-left: 10px;
     padding-right: 10px;
     height: 66px;
     line-height: 66px;
     font-size: 20px;
+    -webkit-tap-highlight-color: #000080;
 }
 
 .pink {background-color: #c88cc8;}
@@ -136,10 +137,9 @@ footer {
 }
 
 footer .btn {
-    height: 100%;
-    line-height: 100%;
-    display: table-cell;
+    line-height: 1em;
     font-size: 20px;
+    float: left;
 }
 
 .btn:active, .menu-item:active {
