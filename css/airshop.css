@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: verdana, helvetica, arial;
+    font-family: verdana, helvetica, arial, serif;
     font-size: 18px;
     background-color: #fff;
     color: #000;
@@ -142,7 +142,13 @@ footer .btn {
     float: left;
 }
 
-.btn:active, .menu-item:active {
+/*.btn:active, .menu-item:active {*/
+.menu-item:active {
+    background-color: #000000;
+    color: #c0c0c0;
+}
+
+.btn.pressed {
     background-color: #000000;
     color: #c0c0c0;
 }
@@ -290,10 +296,9 @@ td.img-cell img{
 }
 
 .menu-icon {
-    background-image: url("../images/menu-icons.png");
     width: 70px;
     height: 70px;
-    background-repeat: no-repeat;
+    background: url("../images/menu-icons.png") no-repeat;
     display: inline-block;
 }
 
@@ -319,8 +324,7 @@ td.img-cell img{
     display: inline-block;
     height: 28px;
     line-height: 28px;
-    background-image: url("../images/back.png");
-    background-repeat: no-repeat;
+    background: url("../images/back.png") no-repeat;
     margin-left: 5px;
     padding-left: 45px;
     width: 90%;
@@ -430,11 +434,45 @@ tr.selected {
 
 .log-messages {
     border: 2px solid #c0c0c0;
-    font-size: 14px;
-    line-height: 14px;
+    font-size: 24px;
+    line-height: 24px;
     height: 380px;
     margin-bottom: 6px;
     margin-top: 3px;
+    overflow-x: auto;
     overflow-y: auto;
     padding: 5px;
+}
+
+/*
+  Custom scrollbar styles:
+  https://css-tricks.com/custom-scrollbars-in-webkit/
+*/
+::-webkit-scrollbar {
+    height: 70px;
+    width: 70px;
+    background: #add8e6;
+}
+
+::-webkit-scrollbar-button {
+    background: #87cefa;
+    height: 70px;
+    width: 70px;
+    box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.5) inset, -2px -2px 2px 0 rgba(55, 55, 55, 0.5) inset;
+}
+
+::-webkit-scrollbar-track {
+    background: #add8e6;
+}
+
+::-webkit-scrollbar-track-piece {
+
+}
+
+::-webkit-scrollbar-thumb {
+    /*border-radius: 10px;*/
+    /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);*/
+    background: #87cefa;
+    box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.5) inset, -2px -2px 2px 0 rgba(55, 55, 55, 0.5) inset;
+    -webkit-box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.5) inset, -2px -2px 2px 0 rgba(55, 55, 55, 0.5) inset;
 }

@@ -13,18 +13,15 @@
 <body>
 <header>
     <div class="logo"></div>
-    <div class="title">Crew Messages</div>
+    <div class="title">Buttons test</div>
 </header>
 
 <div class="container pad5">
-    <div class="crew-messages">
-        To crew members<br><br>
-        No messages today.
-    </div>
+    <pre class="crew-messages" id="log"></pre>
     <table class="cols-2 w100 buttons-table">
         <tr>
-            <td><a class="btn block" href="#">Print</a></td>
-            <td><a id="done" class="btn block" href="startup_tasks.html">Done</a></td>
+            <td><button class="btn block">Just button</button></td>
+            <td><button id="touch-events" class="block" style="height: 70px; width: 200px; font-size: 24px;">Touch events</button></td>
         </tr>
     </table>
 </div>
@@ -39,8 +36,16 @@
 <script src="js/airshop.js"></script>
 <script>
     $(document).on("ready", function () { //Document ready -- set click handler
-        $('#done').on('click', function () {
-            sessionStorage.crew_messages_done = 1;
+        $('#touch-events').on('mousedown', function (e) {
+            console.log(e);
+//            e.preventDefault();
+//            e.stopPropagation();
+            $(e.currentTarget).css({'background-color': 'red'});
+            $('#log').append(e.type+'\n');
+        }).on('mouseup', function (e) {
+//            e.preventDefault();
+//            e.stopPropagation();
+            $(e.currentTarget).css({'background-color': ''});
         });
     });
 </script>

@@ -36,7 +36,6 @@
 </footer>
 
 <script src="js/jquery.js"></script>
-<script src="js/jquery.mobile.custom.min.js"></script>
 <script src="js/airshop.js"></script>
 <script>
     function appInfo(){
@@ -87,9 +86,7 @@
             var imager_status = YTimager.open();
             if (imager_status == 0) {
                 YTimager.signalScanCompleted.connect( imagerFinished );
-                var res = YTimager.scan(5000);
-//                logContainer.append('\n  res:\n')
-//                            .append( JSON.stringify( res, null, 2 ));
+                YTimager.scan(5000);
             }
             else {
                 logContainer.append("\n  Problem with imager. Error code: " + imager_status);
