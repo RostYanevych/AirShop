@@ -1,3 +1,14 @@
+$(document).on('mousedown', '.btn', function(e) {
+    $(e.currentTarget).addClass('pressed');
+}).on('mouseup', '.btn', function (e) {
+    $(e.currentTarget).removeClass('pressed');
+}).on('click', 'button[href]', function(e) {
+    //e.stopPropagation();
+    location.href = $(e.currentTarget).attr('href');
+});
+
+
+
 function clearScreen() {
     $('body').append('<div id="clsOverlay" class="overlay"><a onclick="$(\'#clsOverlay\').remove();" class="btn" href="#">+</a></div>');
 }
@@ -34,17 +45,13 @@ function hideOverlay() {
     $('.overlay:visible').hide();
 }
 
-//$(document).on('tap click', 'button[href]', function(e) {
-$(document).on('click', 'button[href]', function(e) {
-    //e.stopPropagation();
-    console.log('click on button with href', e);
-    location.href = $(e.currentTarget).attr('href');
-}).on('mousedown', '.btn', function(e) {
-    //console.log('touchstart mousedown', e.currentTarget);
-    $(e.currentTarget).addClass('pressed');
-}).on('mouseup', '.btn', function (e) {
-    //console.log('touchend mouseup', e.currentTarget);
-    $(e.currentTarget).removeClass('pressed');
-});
-
-//document.body.addEventListener('touchstart', function() {}, false);
+function findGoods(str){
+    var result = [];
+    $.each( goods, function(group, items) {
+        $.each(items, function(i, item) {
+            if(item.label.toLowerCase().indexOf(str) > -1)
+                result.push(item);
+        });
+    });
+    return result;
+}

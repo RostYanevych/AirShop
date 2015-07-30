@@ -20,7 +20,7 @@
     <pre class="crew-messages" id="log"></pre>
     <table class="cols-2 w100 buttons-table">
         <tr>
-            <td><button class="btn block">Just button</button></td>
+            <td><button id="test_search" class="btn block">Test search</button></td>
             <td><button id="touch-events" class="block" style="height: 70px; width: 200px; font-size: 24px;">Touch events</button></td>
         </tr>
     </table>
@@ -34,10 +34,11 @@
 
 <script src="js/jquery.js"></script>
 <script src="js/airshop.js"></script>
+<script src="js/data.js"></script>
 <script>
     $(document).on("ready", function () { //Document ready -- set click handler
         $('#touch-events').on('mousedown', function (e) {
-            console.log(e);
+//            console.log(e);
 //            e.preventDefault();
 //            e.stopPropagation();
             $(e.currentTarget).css({'background-color': 'red'});
@@ -46,6 +47,15 @@
 //            e.preventDefault();
 //            e.stopPropagation();
             $(e.currentTarget).css({'background-color': ''});
+        });
+
+        $('#test_search').on('click', function(){
+            var t = new Date();
+            var found = findGoods('ba');
+            var diff = new Date() - t;
+            $('#log').append( found.length + ' items found in ' + diff + ' ms');
+            $('#log').append( JSON.stringify(found, null, 2) );
+
         });
     });
 </script>
